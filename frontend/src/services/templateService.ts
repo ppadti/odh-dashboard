@@ -3,6 +3,8 @@ import axios from 'axios';
 import YAML from 'yaml';
 import { assembleServingRuntimeTemplate } from '~/api';
 import { ServingRuntimeKind, TemplateKind } from '~/k8sTypes';
+import { addTypesToK8sListedResources } from '~/utilities/addTypesToK8sListedResources';
+import { TemplateModel } from '~/api';
 
 export const listTemplatesBackend = async (
   namespace?: string,
@@ -10,7 +12,9 @@ export const listTemplatesBackend = async (
 ): Promise<TemplateKind[]> =>
   axios
     .get(`/api/templates/${namespace}`, { params: { labelSelector } })
-    .then((response) => response.data.items)
+    .then(
+      (response) => addTypesToK8sListedResources<TemplateKind>(response.data, TemplateModel).items,
+    )
     .catch((e) => Promise.reject(e));
 
 const dryRunServingRuntimeForTemplateCreationBackend = (
