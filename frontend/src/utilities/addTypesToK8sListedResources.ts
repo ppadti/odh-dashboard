@@ -4,7 +4,7 @@ import {
   K8sResourceListResult,
 } from '@openshift/dynamic-plugin-sdk-utils';
 
-export const addTypesToK8sListedResources = <TResource extends K8sResourceCommon>(
+export const addTypesToK8sListedResources = <TResource extends Partial<K8sResourceCommon>>(
   response: K8sResourceListResult<TResource>,
   model: K8sModelCommon,
 ): K8sResourceListResult<TResource> => ({
