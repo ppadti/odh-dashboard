@@ -29,7 +29,7 @@ const PipelineRunDrawerRightTabs: React.FC<PipelineRunDrawerRightTabsProps> = ({
   taskReferences,
   parameters,
 }) => {
-  const [selection, setSelection] = React.useState(PipelineRunNodeTabs.INPUT_OUTPUT);
+  const [selection, setSelection] = React.useState(PipelineRunNodeTabs.LOGS);
 
   const tabContentProps = (tab: PipelineRunNodeTabs): React.ComponentProps<typeof TabContent> => ({
     id: tab,

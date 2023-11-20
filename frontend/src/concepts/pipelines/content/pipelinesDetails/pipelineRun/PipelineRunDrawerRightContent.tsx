@@ -25,12 +25,18 @@ const PipelineRunDrawerRightContent: React.FC<PipelineRunDrawerRightContentProps
   parameters,
   onClose,
 }) => {
+  const [, setWidth] = React.useState<number>(0);
+
   if (!task) {
     return null;
   }
 
   return (
     <DrawerPanelContent
+      // This forces a re-render to solve resize of the Log viewer inside Drawer.
+      onResize={(_event: MouseEvent | TouchEvent | React.KeyboardEvent, newWidth: number) => {
+        setWidth(newWidth);
+      }}
       isResizable
       widths={{ default: 'width_33', lg: 'width_50' }}
       minSize="400px"
