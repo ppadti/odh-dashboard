@@ -101,7 +101,7 @@ const initIntercepts = ({ isEmpty = false }: HandlersProps) => {
 };
 
 describe('Data connections', () => {
-  it('Empty state when no data connections are available', () => {
+  it('Empty state when no data connection is available', () => {
     initIntercepts({ isEmpty: true });
     projectDetails.visit('test-project');
     projectDetails.shouldBeEmptyState('data-connections', true);
