@@ -1,3 +1,5 @@
+import { K8sAPIOptions } from '#~/k8sTypes.ts';
+
 export type FeatureStoreMeta = {
   createdTimestamp: string;
   lastUpdatedTimestamp: string;
@@ -130,7 +132,7 @@ export type FeatureView =
     };
   };
 //   {
-//     //TODO: need to update this when we schema from backend
+// TODO: need to update this when we get schema from backend, ecspecially sources
 //     onDemandFeatureView: {
 //       spec: {
 //         name: string;
@@ -154,3 +156,18 @@ export type FeatureView =
 //     };
 //   }
 // >;
+
+export type FeatureStoreError = {
+  code: string;
+  message: string;
+};
+
+export type GetListFeatureStoreProjects = (
+  opts: K8sAPIOptions,
+  name: string,
+  namespace: string,
+) => Promise<FeatureStoreProject[]>;
+
+export type FeatureStoreAPIs = {
+  listFeatureStoreProject: GetListFeatureStoreProjects;
+};

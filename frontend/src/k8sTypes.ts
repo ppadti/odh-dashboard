@@ -1586,6 +1586,15 @@ export type Server = {
   grpc?: boolean;
   image?: string;
   restAPI?: boolean;
+  tls?: {
+    secretKeyNames: {
+      tlsCrt: string;
+      tlsKey: string;
+    };
+    secretRef: {
+      name: string;
+    };
+  };
   volumeMounts?: Record<string, never>[];
 };
 
@@ -1648,6 +1657,13 @@ export type FeatureStoreKind = K8sResourceCommon & {
     applied?: {
       cronJob?: {
         concurrencyPolicy: string;
+        containerConfigs: {
+          commands: string[];
+          image: string;
+        };
+        schedule: string;
+        startingDeadlineSeconds: number;
+        suspend: boolean;
       };
       feastProject: string;
       feastProjectDir?: FeastProjectDir;

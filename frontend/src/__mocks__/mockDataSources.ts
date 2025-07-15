@@ -1,7 +1,8 @@
 /* eslint-disable camelcase */
-// @typescript-eslint/naming-convention
+
 import { DataSource, DataSources } from '#~/concepts/featureStore/types.ts';
 
+/* eslint-disable @typescript-eslint/naming-convention */
 export const mockDataSource_REQUEST_SOURCE = (partial?: Partial<DataSource>): DataSource => ({
   type: 'REQUEST_SOURCE',
   requestDataOptions: {
@@ -56,6 +57,7 @@ export const mockDataSource_REQUEST_SOURCE = (partial?: Partial<DataSource>): Da
   ...partial,
 });
 
+/* eslint-disable @typescript-eslint/naming-convention */
 export const mockDataSource_BATCH_FILE = (partial?: Partial<DataSource>): DataSource => ({
   type: 'BATCH_FILE',
   timestampField: 'event_timestamp',
