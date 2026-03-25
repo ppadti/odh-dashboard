@@ -337,7 +337,18 @@ const ManageKServeModal: React.FC<ManageKServeModalProps> = ({
       .catch((e) => {
         props.success = false;
         props.errorMessage = e;
-        setErrorModal(e);
+        const message = e instanceof Error ? e.message : String(e);
+        if (message.includes('already exists')) {
+          const nameMatch = message.match(/"([^"]+)"/);
+          const name = nameMatch ? nameMatch[1] : 'this name';
+          setErrorModal(
+            new Error(
+              `A model deployment with the name "${name}" already exists. Please choose a different model deployment name.`,
+            ),
+          );
+        } else {
+          setErrorModal(e);
+        }
         fireFormTrackingEvent(editInfo ? 'Model Updated' : 'Model Deployed', props);
       });
   };
